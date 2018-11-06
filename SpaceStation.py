@@ -1,4 +1,4 @@
-# Name: First Last
+# Name: Brad
 # Date:
 # Period:
 # Lab: SpaceStation.py
@@ -14,7 +14,11 @@ import urllib.request  # to load data from a specific web service api
 import turtle  # for images
 
 # TODO: Step 1 Who is in space?
-
+url = 'http://api.open-notify.org/astros.json'
+response = urllib.request.urlopen(url)
+result = json.loads(response.read())
+#print(result)
+print("People in space: ", result['number'])
 
 # TODO: Step 2 Where is the ISS?
 
