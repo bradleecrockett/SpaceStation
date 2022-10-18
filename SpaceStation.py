@@ -1,4 +1,4 @@
-# Name: Brad
+# Name: 
 # Date:
 # Period:
 # Lab: SpaceStation.py
