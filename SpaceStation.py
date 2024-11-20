@@ -12,14 +12,65 @@
 import json  # to interpret JSON data from a web service
 import urllib.request  # to load data from a specific web service api
 import turtle  # for images
+import time
 
 # TODO: Step 1 Who is in space?
+url = 'http://api.open-notify.org/astros.json'
+response = urllib.request.urlopen(url)
+result = json.loads(response.read())
+# print(result)
 
+print('People in space: ', result['number'])
+people = result['people']
+# print(people)
+for p in people:
+    print(p['name'])
 
 # TODO: Step 2 Where is the ISS?
+url = 'http://api.open-notify.org/iss-now.json'
+response = urllib.request.urlopen(url)
+result = json.loads(response.read())
 
+# print(result)
+location = result['iss_position']
+lat = float(location['latitude'])
+lon = float(location['longitude'])
+print("latitude:", lat)
+print("Longitude:", lon)
 
-# TODO: Step 3 When will the ISS be overhead?  Note: Change from Houston to Roseville
+screen = turtle.Screen()
+screen.bgpic('map.gif')
+screen.setup(1280,640)
+screen.setworldcoordinates(-180, -90, 180, 90)
+
+screen.register_shape('iss.gif')
+iss = turtle.Turtle()
+iss.color('yellow')
+
+iss.shape('iss.gif')
+iss.setheading(90)
+iss.penup()
+iss.color('yellow')
+
+iss.goto(lon, lat)
+
+while True:
+    time.sleep(5)
+    response = urllib.request.urlopen(url)
+    result = json.loads(response.read())
+
+    # print(result)
+    location = result['iss_position']
+    lat = float(location['latitude'])
+    lon = float(location['longitude'])
+    print("\nLatitude:", lat)
+    print("Longitude:", lon)
+    
+    iss.pendown()
+    iss.goto(lon, lat)
+    iss.right(45)
+    
+
 
 
 # TODO: Step 4 Rewrite the program in a format that uses functions
@@ -31,3 +82,4 @@ import turtle  # for images
 # Make the program update automatically?
 
 # use screen.mainloop() to keep the window open
+screen.mainloop()
