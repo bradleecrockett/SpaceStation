@@ -8,3 +8,7 @@ There are several differences in the files in the project structure compared to 
 The map will be larger than the window that your program opens, adjust its size to fix that issue.
 
 When you add the Space Station to the map, you will likely get an error. Discuss how to fix that error with your partner, then fix it.
+
+Step 3 on the PDF no longer works.
+
+Next, modify the program so the ISS moves on the map based on its actual location retrieved from the web service.
